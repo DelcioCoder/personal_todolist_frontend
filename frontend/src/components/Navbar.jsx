@@ -6,6 +6,9 @@ import { FaBrain } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
+import { motion, AnimatePresence } from "framer-motion";
+
+
 export const Links = [
   {
     name: "Activities",
@@ -31,59 +34,61 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-black  h-12 shadow-lg">
-        {/* div principal */}
-        <div className="container mx-auto flex justify-between items-center   h-full">
+        {/* motion.div principal */}
+        <motion.div className="container mx-auto flex justify-between items-center   h-full">
           {/* Logo */}
-          <div className="text-white text-2xl font-bold mx-5">WORKBRAIN</div>
+          <motion.div className="text-white text-2xl font-bold mx-5">WORKBRAIN</motion.div>
 
           {/* Links desktop */}
-          <div className="hidden md:flex mx-5 space-x-10">
+          <motion.div className="hidden md:flex mx-5 space-x-10">
             {Links.map((link, i) => {
               return (
-                <a
+                <motion.a
                   key={i}
                   href="#"
                   className="flex gap-3 text-white hover:text-gray-600 transition duration-200"
                 >
                   {link.icon} {link.name}
-                </a>
+                </motion.a>
               );
             })}
 
             {/* Botão de login */}
-            <div className="bg-blue-600 rounded-xl mx-5 p-2 w-36 text-center transition duration-200 transform hover:scale-105 cursor-pointer">
+            <motion.div className="bg-blue-600 rounded-xl mx-5 p-2 w-36 text-center transition duration-200 transform hover:scale-105 cursor-pointer">
               <button className="text-white cursor-pointer transition duration-200 hover:opacity-70">
                 Login
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Botão do menu - Mobile */}
-          <div className="md:hidden mx-4">
+          <motion.div className="md:hidden mx-4">
             <button onClick={toggleMenu} className="text-white text-3xl">
               {isOpen ? <MdClose /> : <HiMenuAlt2 />}
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Menu mobile */}
-        {isOpen && (
-          <div className="md:hidden  w-full space-y-6">
-            <ul className="flex flex-col bg-black  py-3 text-white text-sm">
-              {Links.map((link, i) => (
-                <li key={i} className="list-none px-4 my-3">
-                  <a
-                    href="#"
-                    className="block hover:text-gray-600 transition duration-200"
-                    onClick={toggleMenu}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div key="box" exit={{opacity:0}} className="md:hidden  w-full space-y-6">
+              <motion.ul className="flex flex-col bg-black  py-3 text-white text-sm">
+                {Links.map((link, i) => (
+                  <motion.li key={i} className="list-none px-4 my-3">
+                    <motion.a
+                      href="#"
+                      className="block hover:text-gray-600 transition duration-200"
+                      onClick={toggleMenu}
+                    >
+                      {link.name}
+                    </motion.a>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );
