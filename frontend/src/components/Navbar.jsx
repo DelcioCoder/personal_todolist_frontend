@@ -78,7 +78,7 @@ export default function Navbar() {
         {/* Menu mobile */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div key="box" exit={{opacity:0}} className="md:hidden  w-full space-y-6">
+            <motion.div key="box" exit={{opacity:0}} className="md:hidden  w-full space-y-6 z-50 relative">
               <motion.ul className="flex flex-col bg-black  py-3 text-white text-sm">
                 {Links.map((link, i) => (
                   <motion.li key={i} className="list-none px-4 my-3">
