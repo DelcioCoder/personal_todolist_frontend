@@ -6,6 +6,8 @@ import { FaBrain } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
+import { Link as RouterLink } from "react-router-dom";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -13,11 +15,13 @@ export const Links = [
   {
     name: "Activities",
     icon: <FaBrain />,
+    to: "/activities",
   },
 
   {
     name: "Notes",
     icon: <FaBookOpen />,
+    to: "/notes",
   },
   {
     name: "Admin",
@@ -43,20 +47,22 @@ export default function Navbar() {
           <motion.div className="hidden md:flex mx-5 space-x-10">
             {Links.map((link, i) => {
               return (
-                <motion.a
+                <RouterLink
                   key={i}
-                  href="#"
+                  to={link.to}
                   className="flex gap-3 text-white hover:text-gray-600 transition duration-200"
                 >
                   {link.icon} {link.name}
-                </motion.a>
+                </RouterLink>
               );
             })}
 
             {/* Botão de login */}
             <motion.div className="bg-blue-600 rounded-xl mx-5 p-2 w-36 text-center transition duration-200 transform hover:scale-105 cursor-pointer">
               <button className="text-white cursor-pointer transition duration-200 hover:opacity-70">
-                Login
+                <RouterLink to="/login">
+                    Login
+                </RouterLink>
               </button>
             </motion.div>
           </motion.div>
