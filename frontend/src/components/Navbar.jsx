@@ -60,7 +60,7 @@ export default function Navbar() {
             {/* Botão de login */}
             <motion.div className="bg-blue-600 rounded-xl mx-5 p-2 w-36 text-center transition duration-200 transform hover:scale-105 cursor-pointer">
               <button className="text-white cursor-pointer transition duration-200 hover:opacity-70">
-                <RouterLink to="/login">
+                <RouterLink to="/login" className="font-bold">
                     Login
                 </RouterLink>
               </button>
