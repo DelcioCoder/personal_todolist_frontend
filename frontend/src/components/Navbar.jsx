@@ -50,7 +50,7 @@ export default function Navbar() {
                 <RouterLink
                   key={i}
                   to={link.to}
-                  className="flex gap-3 text-white hover:text-gray-600 transition duration-200"
+                  className="flex gap-3 text-white text-md mt-2 font-extralight hover:text-gray-600 transition duration-200"
                 >
                   {link.icon} {link.name}
                 </RouterLink>
