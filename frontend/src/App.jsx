@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import ProtectedRoute from './components/ProtectedRoute'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Activities from './pages/Activities'
@@ -11,9 +12,27 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<h1>Welcome to the ToDo List App!</h1>} />
-          <Route path="/activities" element={<Activities/>} />
-          <Route path="/notes" element={<Notes/>} />
           <Route path="/Login" element={<Login/>} />
+
+
+          {/* Rotas protegidas */}
+          <Route
+            path='/activities'
+            element={
+              <ProtectedRoute>
+                <Activities />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path='/notes'
+            element={
+              <ProtectedRoute>
+                <Notes />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
   
