@@ -7,6 +7,7 @@ import { FaBookOpen } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
 import { isAuthenticated } from "../../utils/auth";
+import LoginButton from "./LoginButton";
 
 import { Link as RouterLink } from "react-router-dom";
 
@@ -60,27 +61,8 @@ export default function Navbar() {
             })}
 
             {/* Botão de login */}
-            <motion.div className="bg-blue-600 rounded-xl mx-5 p-2 w-36 text-center transition duration-200 transform hover:scale-105 cursor-pointer">
-              {isAuthenticated() ? (
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("token"); // remove o token do localStorage
-                      window.location.href = "/"; // Redireciona o usuário para a página home
-                    }}
-
-                    className="text-white font-bold cursor-pointer transition duration-200 hover:opacity-70"
-                  >
-                    Logout
-                  </button>
-              ):
-              (
-                <button>
-                  <RouterLink to="/login" className="text-white font-bold transition duration-200 hover:opacity-70">
-                       Login
-                  </RouterLink>
-                </button>
-              )}
-            </motion.div>
+            <LoginButton isAuthenticated={isAuthenticated}/>
+            
           </motion.div>
 
           {/* Botão do menu - Mobile */}
@@ -98,15 +80,19 @@ export default function Navbar() {
               <motion.ul className="flex flex-col bg-black  py-3 text-white text-sm">
                 {Links.map((link, i) => (
                   <motion.li key={i} className="list-none px-4 my-3">
-                    <motion.a
-                      href="#"
+                    <RouterLink
+                      to={link.to}
                       className="block hover:text-gray-600 transition duration-200"
                       onClick={toggleMenu}
                     >
                       {link.name}
-                    </motion.a>
+                    </RouterLink>
                   </motion.li>
                 ))}
+
+                {/* Botão de login */}
+                <LoginButton isAuthenticated={isAuthenticated} isOpen={isOpen} setIsOpen={setIsOpen}/>
+               
               </motion.ul>
             </motion.div>
           )}
