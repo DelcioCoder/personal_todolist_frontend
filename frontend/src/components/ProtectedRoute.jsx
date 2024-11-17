@@ -1,16 +1,14 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { isAuthenticated } from '../../utils/auth'
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { isAuthenticated } from '../../utils/auth'; // Certifique-se de que o caminho para o arquivo auth.js está correto
 
 export default function ProtectedRoute({ children }) {
-    if(!isAuthenticated()){
-        // Redireciona para o login se não estiver autenticado
-        return <Navigate to="/login" replace/>
+    // Verifica se o usuário está autenticado
+    if (!isAuthenticated()) {
+        // Redireciona para a página de login caso o usuário não esteja autenticado
+        return <Navigate to="/login" replace />;
     }
 
-
-    // Retorna os componentes filhos se estiver autenticado
+    // Renderiza os componentes filhos (rota protegida) se o usuário estiver autenticado
     return children;
 }
-
-
