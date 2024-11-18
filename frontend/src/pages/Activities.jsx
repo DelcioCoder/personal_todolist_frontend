@@ -38,7 +38,7 @@ export default function Activities() {
       ) : (
         <ul>
           {activities.map((activity) => (
-            <li key={activity.id} className="mb-4 p-4 border rounded shadow">
+            <li key={activity.id} className="m-4 p-4 border rounded shadow">
               <h3 className="text-xl font-bold">
                 Dia {activity.day}: {activity.modality.name}
               </h3>
