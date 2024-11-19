@@ -36,34 +36,47 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2 className="text-center">Login</h2>
-      <form className="flex-col space-y-6" onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            className="text-black"
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="text-black"
-          />
-        </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2">
-          Login
-        </button>
-      </form>
-      {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="login-container shadow-xl rounded-lg bg-white md:w-[400px] w-[320px] py-10 px-6 flex flex-col">
+        <h2 className="text-center font-bold text-2xl text-gray-800 mb-6">Login</h2>
+        <form className="flex flex-col space-y-4" onSubmit={handleLogin}>
+          <div>
+            <input
+              type="text"
+              value={username}
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="w-full text-black rounded-lg p-3 outline-none border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full text-black rounded-lg p-3 outline-none border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 font-medium"
+          >
+            Login
+          </button>
+        </form>
+        {error && (
+          <p className="text-red-500 text-center mt-4">{error}</p>
+        )}
+        <p className="text-center text-gray-500 mt-6 text-sm">
+          Don't have an account?{' '}
+          <a href="/signup" className="text-blue-500 hover:underline">
+            Sign up
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
